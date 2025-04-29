@@ -1,0 +1,26 @@
+$full-width : 1920px;
+$content-width : 1440px;
+
+/*color*/
+$font-color-default : #000;
+$font-color-white : #fff;
+$font-color-gray : #999;
+
+/* fonts*/
+$font-weights: (
+	400: 'Pretendard-Regular',
+	500: 'Pretendard-Medium',
+	600: 'Pretendard-SemiBold',
+	700: 'Pretendard-Bold'
+);
+
+
+@each $weight, $file in $font-weights {
+	@font-face {
+		font-family: 'Pretendard';
+		src: url('/fonts/pretendard/#{$file}.woff2') format('woff2');
+		font-weight: #{$weight};
+		font-style: normal;
+		font-display: swap;
+	}
+}

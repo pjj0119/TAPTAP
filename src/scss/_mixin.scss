@@ -1,0 +1,105 @@
+@mixin tablet-landscape {
+	@media (max-width: 1279px) and (min-width: 1025px) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (max-width: 1024px) and (min-width: 768px) {
+		@content;
+	}
+}
+
+
+@mixin mobile {
+	@media (max-width: 767px) {
+		@content;
+	}
+}
+
+
+@mixin brBlock {
+	.pcBlock {
+		display: block;
+	}
+
+	.tabletLanBlock {
+		display: none;
+	}
+
+	.tabletBlock {
+		display: none;
+	}
+
+	.moBlock {
+		display: none;
+	}
+
+	@media (max-width: 1279px) and (min-width: 1025px) {
+
+		.pcBlock {
+			display: none;
+		}
+
+		.tabletLanBlock {
+			display: block;
+		}
+
+		.tabletBlock {
+			display: none;
+		}
+
+		.moBlock {
+			display: none;
+		}
+	}
+
+	@media (max-width: 1024px) and (min-width: 768px) {
+
+		.pcBlock {
+			display: none;
+		}
+
+		.tabletLanBlock {
+			display: none;
+		}
+
+		.tabletBlock {
+			display: block;
+		}
+
+		.moBlock {
+			display: none;
+		}
+	}
+
+	@media (max-width: 767px) {
+
+		.pcBlock {
+			display: none;
+		}
+
+		.tabletLanBlock {
+			display: none;
+		}
+
+		.tabletBlock {
+			display: none;
+		}
+
+		.moBlock {
+			display: block;
+		}
+
+		.moNone {
+			display: none;
+		}
+	}
+}
+
+
+@mixin ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

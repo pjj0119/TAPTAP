@@ -1,0 +1,335 @@
+@use './import' as *;
+
+@include brBlock;
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 9999;
+
+	&Inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: $full-width ;
+		margin: auto;
+		padding: 15px 72px;
+		box-sizing: border-box;
+
+	}
+
+	&__logo {
+		a {
+			display: block;
+			width: 85px;
+			height: 35px;
+			background: url(/images/common/logo_block_d.svg) center / 100% no-repeat;
+		}
+
+	}
+
+	&__gnb {
+		flex: 1;
+		padding-right: 80px;
+		box-sizing: border-box;
+
+		ul {
+			display: flex;
+			justify-content: center;
+			gap: 56px;
+
+			&:has(.on) {
+				li {
+					a:not(.on) {
+						color: $font-color-gray;
+					}
+				}
+			}
+
+			li {
+				a {
+					font-size: 20px;
+					font-weight: 500;
+				}
+
+			}
+		}
+	}
+
+	&.white {
+		.header__logo {
+			background: url(/images/common/logo_white_d.svg) center / 100% no-repeat;
+		}
+
+		.header__gnb {
+			ul {
+				li {
+					a {
+						color: $font-color-white;
+					}
+				}
+			}
+		}
+
+	}
+}
+
+.footer {
+	&Inner {
+		max-width: $full-width ;
+		margin: auto;
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		padding: 100px 219px 60px;
+		box-sizing: border-box;
+		position: relative;
+
+		&__con {
+			&--left {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+
+
+			&__address {
+				line-height: 20px;
+			}
+
+			&__desc {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+
+				p {
+					font-size: 22px;
+					line-height: 34px;
+					font-weight: 600;
+				}
+
+				a {
+					font-size: 16px;
+					font-weight: 500;
+					color: $font-color-gray;
+					text-decoration: underline;
+				}
+			}
+		}
+
+		&__topBtn {
+			position: absolute;
+			top: 50%;
+			right: 80px;
+			transform: translateY(-50%);
+
+			button {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+
+				.topBtn__text {
+					font-size: 13px;
+					font-weight: 600;
+					color: $font-color-gray;
+				}
+			}
+		}
+	}
+}
+
+/* 1025 ~ 1279 */
+@mixin footerTablet {
+	.footerInner {
+		padding: 60px 124px 40px 60px;
+
+		&__con {
+			&__address {
+				font-size: 12px;
+				line-height: 17px;
+			}
+
+			&__desc {
+				gap: 12px;
+
+				p {
+					font-size: 18px;
+					line-height: 24px;
+				}
+
+				a {
+					font-size: 14px;
+				}
+			}
+		}
+
+		&__topBtn {
+			right: 60px;
+		}
+	}
+}
+
+@include tablet-landscape {
+
+	@include footerTablet;
+
+}
+
+/* 768 ~ 1024 */
+@include tablet {
+
+	.header {
+		&__logo {
+			a {
+				width: 69px;
+				height: 26px;
+			}
+		}
+
+		&__gnb {
+			ul {
+				gap: 48px;
+
+				li {
+					a {
+						font-size: 17px;
+					}
+				}
+			}
+		}
+	}
+
+	@include footerTablet;
+}
+
+/*  ~ 767 */
+@include mobile {
+	.header {
+		&Inner {
+			padding: 10px 20px;
+		}
+
+		&__MoGnb {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			width: 100%;
+			height: 100dvh;
+			background-color: $font-color-white;
+			padding: 0 20px;
+			box-sizing: border-box;
+
+			&__top {
+				height: 55px;
+				display: flex;
+				justify-content: end;
+				align-items: center;
+
+				.MoGnbCloseBtn {
+					position: relative;
+					height: 20px;
+
+					&__bar {
+						display: block;
+						top: 50%;
+						left: 50%;
+						width: 20px;
+						height: 2px;
+						background-color: $font-color-default;
+						transform: rotate(45deg);
+						font-size: 0;
+
+						&+.MoGnbCloseBtn__bar {
+
+							position: absolute;
+							transform: translate(-50%, -50%) rotate(-45deg);
+						}
+					}
+				}
+			}
+
+			&__list {
+				ul {
+					display: flex;
+					flex-direction: column;
+					gap: 12px;
+
+					li {
+						a {
+							display: block;
+							font-size: 32px;
+							font-weight: 500;
+						}
+					}
+				}
+			}
+		}
+
+		&__hamBtn {
+			button {
+				display: flex;
+				flex-direction: column;
+				gap: 7px;
+
+				span {
+					display: block;
+					width: 20px;
+					height: 2px;
+					background-color: $font-color-default;
+				}
+
+			}
+		}
+	}
+
+	.footer {
+		&Inner {
+			padding: 40px 20px;
+			flex-direction: column-reverse;
+			align-items: flex-start;
+			gap: 80px;
+
+			&__con {
+				&--left {
+					gap: 12px;
+				}
+
+				&__logo {
+					flex-shrink: 0;
+					width: 32px;
+				}
+
+				&__address {
+					font-size: 10px;
+					line-height: 12px;
+				}
+
+
+				&__desc {
+					gap: 16px;
+
+					p {
+						font-size: 17px;
+						line-height: 24px;
+					}
+
+					a {
+						font-size: 13px;
+					}
+				}
+			}
+
+			&__topBtn {
+				right: auto;
+				top: auto;
+				transform: none;
+			}
+		}
+	}
+
+}
