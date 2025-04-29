@@ -6,12 +6,13 @@
     "d": "next dev",
     "b": "next build",
     "s": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "e": "next export"
   },
   "dependencies": {
-    "next": "15.3.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next": "^13.5.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sass": "^1.87.0",
     "swiper": "^11.2.6"
   },
