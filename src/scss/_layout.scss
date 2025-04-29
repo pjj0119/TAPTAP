@@ -82,7 +82,7 @@
 		max-width: $full-width ;
 		margin: auto;
 		display: flex;
-		align-items: end;
+		align-items: flex-end;
 		justify-content: space-between;
 		padding: 100px 219px 60px;
 		box-sizing: border-box;
@@ -227,7 +227,7 @@
 			&__top {
 				height: 55px;
 				display: flex;
-				justify-content: end;
+				justify-content: flex-end;
 				align-items: center;
 
 				.MoGnbCloseBtn {
@@ -271,6 +271,16 @@
 		}
 
 		&__hamBtn {
+			&:has(.header__hamBtn__gnbTit){
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+			&__gnbTit{
+				font-size: 16px;
+				font-weight: 500;
+				text-transform: uppercase;
+			}
 			button {
 				display: flex;
 				flex-direction: column;
