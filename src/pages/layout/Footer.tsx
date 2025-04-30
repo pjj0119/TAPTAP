@@ -26,7 +26,7 @@ const Footer = ({ isMobile }: isMobileProps) => {
 							전문성과 재미를 한곳에<br />
 							아카이빙하고 싶은 매거진 탭탭 <br className="tabletBlock moBlock" />지금 구독하세요.
 						</p>
-						<Link href="https://www.inpix.com/newsletter/add">구독하러 가기</Link>
+						<Link href="https://www.inpix.com/newsletter/add" target="_blank">구독하러 가기</Link>
 					</div>
 				</div>
 				{!isMobile && <FooterTopbtn />}
