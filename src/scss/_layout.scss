@@ -2,6 +2,12 @@
 
 @include brBlock;
 
+body{
+	&:has(.footerbar){
+		padding-bottom: 81px;
+	}
+}
+
 .header {
 	position: fixed;
 	top: 0;
@@ -139,10 +145,50 @@
 			}
 		}
 	}
+	&bar{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		background-color: $font-color-default;
+		&Inner{
+			max-width: 1560px;
+			padding: 17px 60px;
+			box-sizing: border-box;
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&__con{
+				color: $font-color-white;
+				font-size: 16px;
+				&--right{
+					a{
+						display: block;
+						border: 1px solid $font-color-white;
+						border-radius: 47px;
+						padding: 13px 31px;
+						box-sizing: border-box;
+					}
+				}
+			}
+		}
+	}
+}
+
+.contentPages{
+	max-width: 1560px;
+	padding-left: 60px;
+	padding-right: 60px;
+    padding-top: 184px;
+	margin: auto;
+	box-sizing: border-box;
 }
 
 /* 1025 ~ 1279 */
 @mixin footerTablet {
+	
 	.footerInner {
 		padding: 60px 124px 40px 60px;
 
@@ -181,6 +227,11 @@
 /* 768 ~ 1024 */
 @include tablet {
 
+	body{
+		&:has(.footerbar){
+			padding-bottom: 64px;
+		}
+	}
 	.header {
 		&__logo {
 			a {
@@ -201,12 +252,39 @@
 			}
 		}
 	}
+	
+	.footerbar{
+		&Inner{
+			max-width: none;
+			padding: 13px 60px;
+			&__con{
+				font-size: 15px;
+				&--right{
+					a{
+						font-size: 14px;
+						padding: 10px 20px;
+					}
+				}
+			}
+		}
+	}
 
 	@include footerTablet;
+	
+	.contentPages{
+		max-width: none;
+		padding-top: 156px;
+	}
 }
 
 /*  ~ 767 */
 @include mobile {
+	
+	body{
+		&:has(.footerbar){
+			padding-bottom: 56px;
+		}
+	}
 	.header {
 		&Inner {
 			padding: 10px 20px;
@@ -340,6 +418,27 @@
 				transform: none;
 			}
 		}
+		&bar{
+			&Inner{
+				max-width: none;
+				padding: 19px 0;
+				justify-content: center;
+				&__con{
+					font-size: 15px;
+					a{
+						padding-right: 18px;
+						background: url(/images/common/ico_arrw_right.png) right center / 17px no-repeat;
+					}
+				}
+			}
+		}
+	}
+	
+	.contentPages{
+		max-width: none;
+		padding-left: 20px;
+		padding-right: 20px;
+		padding-top: 116px;
 	}
 
 }
