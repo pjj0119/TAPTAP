@@ -36,6 +36,7 @@ const MagazineListItem = () => {
 
 	// 스크롤시 리스트 5개씩 보이기
 	const [visibleCount, setVisibleCount] = useState(5);
+	const visibleList = magazineList.slice(0, visibleCount);
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollTop = window.scrollY;
@@ -55,7 +56,6 @@ const MagazineListItem = () => {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, [magazineList]);
 
-	const visibleList = magazineList.slice(0, visibleCount);
 	
 	useEffect(() => {
 		if (magazineList.length > 0 && visibleCount === 0) {

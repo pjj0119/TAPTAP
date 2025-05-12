@@ -3,10 +3,8 @@ import MainVisualItem from './MainVisualItem';
 import MainVisualTitle from './MainVisualTitle';
 import MainViewAllBtn from './MainViewAllBtn';
 type MainVisualItemType = {
-	bgColor: string;
 	imgSrc: string;
-	whiteMode?: boolean;
-	volume: string;
+	volume: number;
 	desc: string;
 };
 
@@ -24,9 +22,7 @@ const MainVisual = ({ listDatas }: MainVisualProps) => {
 			{listDatas?.map((item, i) => (
 				<MainVisualItem
 					key={i}
-					bgColor={item.bgColor}
 					imgSrc={item.imgSrc}
-					whiteMode={item.whiteMode}
 					volume={item.volume}
 					desc={item.desc}
 				/>

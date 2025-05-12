@@ -1,8 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useRef  } from 'react';
 
-export default function MagazineView() {
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+type isMobileProps = {
+	isMobile: boolean;
+};
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function MagazineView({ isMobile }: isMobileProps) {
 	
 	const router = useRouter();
 	const { pageNum } = router.query;
@@ -29,7 +38,7 @@ export default function MagazineView() {
 
 	useEffect(() => {
 		
-	if (!pageNum) return;
+		if (!pageNum) return;
 
 		const fetchData = async () => {
 			try {
@@ -76,15 +85,58 @@ export default function MagazineView() {
 		fetchData();
 	}, [pageNum, router]);
 
-	if (!magazineView) return null;
+	const triggerBox = useRef<HTMLDivElement>(null);
+	const headerRef = useRef<HTMLElement | null>(null);
+	useEffect(() => {
+		headerRef.current = document.querySelector(".header");
+		if (!triggerBox.current || !headerRef.current) return;
 
-  
+		const headerHeight = headerRef.current.offsetHeight;
+		console.log(headerHeight);
+
+		ScrollTrigger.create({
+			trigger: triggerBox.current,
+			start: `top top+=${headerHeight}`,
+			markers : false,
+			onEnter: () => {
+				triggerBox.current?.classList.add('fixed');
+				gsap.set(triggerBox.current, {
+					position: "fixed",
+					top: headerHeight,
+					left: 0,
+					right: 0,
+					margin: "auto",
+					width: "100%",
+					zIndex: 999,
+					backgroundColor: "#fff",
+				});
+			},
+			onLeaveBack: () => {
+				triggerBox.current?.classList.remove('fixed');
+				gsap.set(triggerBox.current, {
+					clearProps: "all",
+				});
+			},
+		});
+		const handleResize = () => ScrollTrigger.refresh();
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+		}, [magazineView]);
+
+
+	
+	if (!magazineView) return null;
 
   return (
 	
 		<div id="contents" className="magazine">
 			<div className="magazineBox">
 				<div className="magazineBox__view">
+					{ !isMobile && 
 					<div className="magazineBox__view__info">
 						<p className="tit">{magazineView.title}</p>
 						{magazineView.hashTags && magazineView.hashTags.length > 0 && (
@@ -95,7 +147,8 @@ export default function MagazineView() {
 						</ul>
 						)}
 					</div>
-					<div className="magazineBox__view__infoFix">
+					}
+					<div className="magazineBox__view__infoFix" ref={triggerBox}>
 						<div className="magazineBox__view__infoFix__left">
 							<div className="vol">Vol.{magazineView.postNum}</div>
 							{magazineViewImg && (

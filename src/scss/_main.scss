@@ -51,6 +51,7 @@
 				overflow: hidden;
 				display: inline-block;
 				font-size: 0;
+				max-width: 576px;
 
 				a {
 					display: block;
@@ -70,6 +71,7 @@
 			&__desc {
 				position: absolute;
 				bottom: 260px;
+				max-width: 420px;
 				right: 7%;
 				text-align: left;
 

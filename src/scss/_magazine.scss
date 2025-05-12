@@ -107,11 +107,16 @@
 						background: url(/images/common/ico_list_btn.png) right center / 20px no-repeat;
 					}
 				}
+				&.fixed{
+					& + .magazineBox__view__con{
+						padding: 156px 0 160px;
+					}
+				}
 			}
 			&__con{
 				background-color: #F4F4F5;
 				padding: 100px 0 160px;
-				&__img{text-align: center;}
+				&__img{max-width: 800px; margin: auto;}
 				&__topBtn{
 					margin: 120px auto 0;
 					width: 56px;
@@ -166,6 +171,11 @@
 					}
 				}
 			}
+			&__view{
+				&__con{
+					&__img{max-width: 600px;}
+				}
+			}
 		}
 	}
 }
@@ -202,6 +212,36 @@
 								height: 191px;
 							}
 						}
+					}
+				}
+			}
+
+			&__view{
+				&__infoFix{padding: 15px 20px;
+					&__left{
+						.vol,
+						.date{font-size: 14px;}
+					}
+					&__right{
+						.listBtn{
+							font-size: 15px;
+							padding-right: 0;
+							background: none;
+						}
+					}
+					
+					&.fixed{
+						& + .magazineBox__view__con{
+							padding: 48px 0 80px;
+						}
+					}
+				}
+				&__con{padding: 0 0 80px;
+					&__img{max-width: none;}
+					&__topBtn{
+						width: 48px;
+						height: 48px;
+						margin: 40px auto 0;
 					}
 				}
 			}

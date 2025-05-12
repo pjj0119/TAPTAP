@@ -8,10 +8,8 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 type MainVisualItemType = {
-	bgColor: string;
 	imgSrc: string;
-	whiteMode?: boolean;
-	volume: string;
+	volume: number;
 	desc: string;
 };
 
@@ -47,9 +45,7 @@ const MainVisualSwiper = ({ isMobile, listDatas }: MainVisualProps) => {
 				{listDatas?.map((item, i) => (
 					<SwiperSlide key={i}>
 						<MainVisualItem
-							bgColor={item.bgColor}
 							imgSrc={item.imgSrc}
-							whiteMode={item.whiteMode}
 							volume={item.volume}
 							desc={item.desc}
 						/>

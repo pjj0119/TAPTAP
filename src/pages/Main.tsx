@@ -1,11 +1,16 @@
 
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import MainVisualSwiper from '@/pages/component/main/MainVisualSwiper';
 import MainVisual from '@/pages/component/main/MainVisual';
 
 type isMobileProps = {
 	isMobile: boolean;
+};
+type VisualItem = {
+	volume: number;
+	desc: string;
+	imgSrc: string;
 };
 
 const MainVisualItemDatas = [
@@ -30,45 +35,36 @@ const MainVisualItemDatas = [
 	},
 ];
 
+
 const Main = ({ isMobile }: isMobileProps) => {
-	// type VisualItem = {
-	// 	postNum: number;
-	// 	title: string;
-	// 	imgUrl: string;
-	// };
-	// const [listTitle, setListTitle] = useState<VisualItem[]>([]);
 
-	// useEffect(() => {
-	// 	const fetchListData = async () => {
-	// 		try {
-	// 			const res = await fetch('https://inpix.com/front/ajax/tabtabItemList.json');
-	// 			const data = await res.json();
+	const [magazineList, setMagazineList] = useState<VisualItem[]>([]);
+	useEffect(() => {
+		
+		const fetchListData = async () => {
+			try {
+				const res = await fetch('https://inpix.com/front/ajax/tabtabItemList.json');
+				const data = await res.json();
 
-	// 			const list = data.ITEMLIST.map((list: any) => ({
-	// 				postNum: list.postNum,
-	// 				title: list.title,
-	// 				imgUrl: `https://www.inpix.com/upload/taptap/${list.attPhgsFileNm}`
-	// 			}));
-	// 			setListTitle(list);
-	// 		} catch (err) {
-	// 			console.error('메인 비주얼 API 호출 실패:', err);
-	// 		}
-	// 	};
+				const list = data.ITEMLIST.map((list: any) => ({
+					volume: list.postNum,
+					desc: list.title,
+					imgSrc: `https://www.inpix.com/upload/taptap/${list.attPhgsFileNm}`
+				}));
+				console.log(data.ITEMLIST)
+				setMagazineList(list);
+			} catch (err) {
+				console.error('메인 비주얼 API 호출 실패:', err);
+			}
+		};
 
-	// 	fetchListData();
-	// }, []);
+		fetchListData();
+	}, []);
 	return (
 		<div id="contents" className="main">
 			<div className="mainBox">
-				{!isMobile && <MainVisual listDatas={MainVisualItemDatas} />}
-				{isMobile && <MainVisualSwiper isMobile={isMobile} listDatas={MainVisualItemDatas} />}
-				{/*listTitle.map((item, i) => (
-					<p key={i}>
-						{item.postNum}
-						{item.title}
-						<img src={item.imgUrl} alt="" />
-					</p>
-				))*/}
+				{!isMobile && <MainVisual listDatas={magazineList} />}
+				{isMobile && <MainVisualSwiper isMobile={isMobile} listDatas={magazineList} />}
 			</div>
 		</div>
 	);
