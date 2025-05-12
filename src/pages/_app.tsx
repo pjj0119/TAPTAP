@@ -23,10 +23,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	/* //모바일 체크 */
 	
-	const router = useRouter();
-	const [pageTit, setPageTit] = useState<string>('');
 
 	//페이지에 따른 푸터설정
+	const router = useRouter();
+	const [pageTit, setPageTit] = useState<string>('');
 	useEffect(() => {
 		const path = router.pathname.split('/');
 		const pathName = path[1] || '';

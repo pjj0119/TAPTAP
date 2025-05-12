@@ -16,6 +16,7 @@ body{
 	margin: auto;
 	z-index: 9999;
 
+	&.bgwt{background-color: $font-color-white;}
 	&Inner {
 		display: flex;
 		align-items: center;

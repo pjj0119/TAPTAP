@@ -1,4 +1,6 @@
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import HeaderLogo from '@/pages/component/layout/HeaderLogo';
 import HeaderGnb from '@/pages/component/layout/HeaderGnb';
@@ -10,9 +12,19 @@ type isMobileProps = {
 };
 const Header = ({ isMobile }: isMobileProps) => {
 	const [isClicked, setIsClicked] = useState<boolean>(false);
+	//페이지에 따른 푸터설정
+	const router = useRouter();
+	const [pageTit, setPageTit] = useState<string>('');
+
+	useEffect(() => {
+		const path = router.pathname.split('/');
+		const pathName = path[1] || '';
+		setPageTit(pathName);
+	},[router.pathname]);
+
 
 	return (
-		<header id='header' className='header'>
+		<header id='header' className={`header ${pageTit == 'Magazine' ? 'bgwt': ''}`}>
 			<div className='headerInner'>
 				<HeaderLogo />
 				{!isMobile && <HeaderGnb />}
