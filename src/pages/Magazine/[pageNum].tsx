@@ -92,7 +92,6 @@ export default function MagazineView({ isMobile }: isMobileProps) {
 		if (!triggerBox.current || !headerRef.current) return;
 
 		const headerHeight = headerRef.current.offsetHeight;
-		console.log(headerHeight);
 
 		ScrollTrigger.create({
 			trigger: triggerBox.current,
@@ -125,7 +124,7 @@ export default function MagazineView({ isMobile }: isMobileProps) {
 		return () => {
 			window.removeEventListener("resize", handleResize);
 		};
-		}, [magazineView]);
+	}, [magazineView]);
 
 
 	

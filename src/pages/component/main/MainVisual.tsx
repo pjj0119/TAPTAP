@@ -6,6 +6,8 @@ type MainVisualItemType = {
 	imgSrc: string;
 	volume: number;
 	desc: string;
+	bgColor: string;
+	txtColor : string;
 };
 
 type MainVisualProps = {
@@ -25,6 +27,8 @@ const MainVisual = ({ listDatas }: MainVisualProps) => {
 					imgSrc={item.imgSrc}
 					volume={item.volume}
 					desc={item.desc}
+					bgColor={item.bgColor}
+					txtColor ={item.txtColor}
 				/>
 			))}
 

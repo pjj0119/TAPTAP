@@ -11,6 +11,8 @@ type MainVisualItemType = {
 	imgSrc: string;
 	volume: number;
 	desc: string;
+	bgColor: string;
+	txtColor : string;
 };
 
 type MainVisualProps = {
@@ -21,12 +23,11 @@ type MainVisualProps = {
 const MainVisualSwiper = ({ isMobile, listDatas }: MainVisualProps) => {
 	const [currentIndex, setCurrentIndex] = useState(1);
 
-	const [totalSlides, setTotalSlides] = useState(0);
 	return (
 		<div className="mainBox__visual">
 
 
-			<MainVisualTitle isMobile={isMobile} currentIndex={currentIndex} totalSlides={totalSlides} />
+			<MainVisualTitle isMobile={isMobile} currentIndex={currentIndex} totalSlides={listDatas.length} />
 
 
 			<Swiper
@@ -35,11 +36,8 @@ const MainVisualSwiper = ({ isMobile, listDatas }: MainVisualProps) => {
 				loop={true}
 				autoplay={{ delay: 3000 }}
 
-				onSwiper={(swiper) => {
-					setTotalSlides(swiper.slides.length);// 현재 페이지
-				}}
 				onSlideChange={(swiper) => {
-					setCurrentIndex(swiper.realIndex + 1);// 전체 페이지 수
+					setCurrentIndex(swiper.realIndex + 1);// 현재 페이지
 				}}
 			>
 				{listDatas?.map((item, i) => (
@@ -48,6 +46,8 @@ const MainVisualSwiper = ({ isMobile, listDatas }: MainVisualProps) => {
 							imgSrc={item.imgSrc}
 							volume={item.volume}
 							desc={item.desc}
+							bgColor={item.bgColor}
+							txtColor ={item.txtColor}
 						/>
 					</SwiperSlide>
 				))}
