@@ -13,6 +13,7 @@ type MainVisualItemType = {
 	desc: string;
 	bgColor: string;
 	txtColor : string;
+	taptapSeq : number;
 };
 
 type MainVisualProps = {
@@ -48,6 +49,7 @@ const MainVisualSwiper = ({ isMobile, listDatas }: MainVisualProps) => {
 							desc={item.desc}
 							bgColor={item.bgColor}
 							txtColor ={item.txtColor}
+							taptapSeq = {item.taptapSeq}
 						/>
 					</SwiperSlide>
 				))}

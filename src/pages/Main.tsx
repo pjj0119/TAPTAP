@@ -13,6 +13,7 @@ type MainVisualItemType = {
 	imgSrc: string;
 	bgColor: string;
 	txtColor : string;
+	taptapSeq : number ;
 };
 
 
@@ -32,6 +33,7 @@ const Main = ({ isMobile }: isMobileProps) => {
 					imgSrc: `https://www.inpix.com/upload/taptap/${list.attPhgsFileNm}`,
 					bgColor: list.bgColor,
 					txtColor: list.txtColor,
+					taptapSeq : list.taptapSeq ,
 				}));
 				setMagazineList(list);
 			} catch (err) {

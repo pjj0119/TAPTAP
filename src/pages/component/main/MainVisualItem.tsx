@@ -1,9 +1,5 @@
 import Link from 'next/link';
-
-import { useEffect , useRef  } from 'react';
-
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { forwardRef } from 'react';
 
 type MainVisualItemType = {
 	imgSrc: string;
@@ -11,55 +7,12 @@ type MainVisualItemType = {
 	desc: string;
 	bgColor: string;
 	txtColor: string;
+	taptapSeq : number;
 };
 
-gsap.registerPlugin(ScrollTrigger);
 
-const MainVisualItem = ({
-	imgSrc,
-	volume,
-	desc,
-	bgColor,
-	txtColor,
-}: MainVisualItemType) => {
-	
-	const triggerBox = useRef<HTMLDivElement>(null);
-	const titleRef = useRef<HTMLElement | null>(null);
-	useEffect(() => {
-		titleRef.current = document.querySelector(".mainBox__visual__title");
-		if (!triggerBox.current || !titleRef.current) return;
-
-		
-		const titleHeight = titleRef.current.offsetHeight;
-		const titleTop = titleRef.current.getBoundingClientRect().top;
-		const txtcolor = triggerBox.current?.dataset.txtcolor;
-
-		ScrollTrigger.create({
-			trigger: triggerBox.current,
-			start: `top top+=${titleHeight + titleTop * 0.5}`,
-			end: `bottom top+=${titleHeight + titleTop * 0.5}`,
-			markers : false,
-			onEnter: () => {
-				if (titleRef.current && txtcolor) {
-					titleRef.current.style.color = txtcolor;
-				}
-
-			},
-			onEnterBack: () => {
-				console.log(txtcolor)
-				if (titleRef.current && txtcolor) {
-					titleRef.current.style.color = txtcolor;
-				}
-
-			},
-		});
-		const handleResize = () => ScrollTrigger.refresh();
-
-
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
+const MainVisualItem = forwardRef<HTMLDivElement, MainVisualItemType>(
+	({ imgSrc, volume, desc, bgColor, txtColor , taptapSeq }, ref) => {
 
 	return (
 		<div
@@ -67,11 +20,11 @@ const MainVisualItem = ({
 			style={{ backgroundColor: bgColor }}
 			data-txtcolor={txtColor}
 			data-bgcolor={bgColor}
-			ref={triggerBox}
+			ref={ref}
 		>
 			<div className="mainBox__visual__conSticky">
 				<div className="mainBox__visual__con__img">
-					<Link href="">
+					<Link href={`/Magazine/${taptapSeq}`}>
 						<img src={imgSrc} alt={`Vol.${volume} 이미지`} />
 					</Link>
 				</div>
@@ -87,7 +40,8 @@ const MainVisualItem = ({
 				</div>
 			</div>
 		</div>
-	);
-};
+		);
+	}
+);
 
 export default MainVisualItem;

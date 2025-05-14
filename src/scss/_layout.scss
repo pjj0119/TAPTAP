@@ -15,6 +15,7 @@ body{
 	right: 0;
 	margin: auto;
 	z-index: 9999;
+	// transition: all .15s linear;
 
 	&.bgwt{background-color: $font-color-white;}
 	&Inner {
@@ -34,6 +35,11 @@ body{
 			width: 85px;
 			height: 35px;
 			background: url(/images/common/logo_block_d.svg) center / 100% no-repeat;
+		}
+		&.white{
+			a{
+				filter: invert(1);
+			}
 		}
 
 	}

@@ -33,6 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		setPageTit(pathName);
 	},[router.pathname]);
 
+
 	return (
 		<>
 			<Header isMobile={isMobile} />
