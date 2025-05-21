@@ -1,2 +1,2 @@
-export const IS_EXPORT = true;
-export const ASSET_PREFIX = '/static/front';
+export const IS_EXPORT = false;
+export const ASSET_PREFIX = '';

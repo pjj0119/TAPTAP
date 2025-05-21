@@ -9,7 +9,7 @@ const nextConfig = {
       ? [
           {
             source: '/api/loadData',
-            destination: '/taptap/loadAjaxData.do',
+            destination: 'http://taptap.inpix.com/taptap/loadAjaxData.do',
           },
         ]
       : [];
