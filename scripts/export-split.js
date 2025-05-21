@@ -54,29 +54,28 @@ foldersToCopy.forEach((folder) => {
   }
 });
 
-// 4. static/front에 잘못 들어간 .html 제거 (안전)
-fs.readdirSync(STATIC_DIR).forEach((file) => {
-  if (file.endsWith('.html')) {
-    fs.removeSync(path.join(STATIC_DIR, file));
-  }
-});
+// // 4. static/front에 잘못 들어간 .html 제거 (안전)
+// fs.readdirSync(STATIC_DIR).forEach((file) => {
+//   if (file.endsWith('.html')) {
+//     fs.removeSync(path.join(STATIC_DIR, file));
+//   }
+// });
 
-// 5. templates 안의 HTML들 보기 좋게 포맷 (prettier)
-const prettierGlob = path.join(TEMPLATE_DIR, '**/*.html');
+// // 5. templates 안의 HTML들 보기 좋게 포맷 (prettier)
+// const hasHtmlFiles = fs.existsSync(TEMPLATE_DIR) &&
+//   fs.readdirSync(TEMPLATE_DIR).some(file => file.endsWith('.html'));
 
-try {
-  const htmlFiles = fs.readdirSync(TEMPLATE_DIR).filter(file => file.endsWith('.html'));
-  const hasHtml = htmlFiles.length > 0;
+// if (hasHtmlFiles) {
+//   try {
+//     execSync(`npx prettier --write "${TEMPLATE_DIR}\\**\\*.html"`, { stdio: 'inherit' });
+//     console.log('✅ HTML 포맷 완료!');
+//   } catch (err) {
+//     console.warn('⚠ prettier 실행 중 오류 (무시):', err.message);
+//   }
+// } else {
+//   console.log('ℹ️ templates 안에 .html 파일이 없어 prettier 생략');
+// }
 
-  if (hasHtml) {
-    execSync(`npx prettier --write "${prettierGlob}"`, { stdio: 'inherit' });
-    console.log('✅ HTML 포맷 완료!');
-  } else {
-    console.log('ℹ️ templates 폴더에 .html 파일이 없어 prettier 생략');
-  }
-} catch (err) {
-  console.warn('⚠ prettier 실행 중 오류 (무시):', err.message);
-}
 
 
 console.log('✅ 전체 export 정리 완료: templates + static/front');
