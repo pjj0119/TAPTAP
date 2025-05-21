@@ -1,0 +1,18 @@
+@use './import' as *;
+
+.archive {
+	.archiveBox{
+		display: flex;
+	}
+}
+
+/* 1025 ~ 1279 */
+@include tablet-landscape {}
+
+/* 768 ~ 1024 */
+@include tablet {
+}
+	
+/*  ~ 767 */
+@include mobile {
+}
