@@ -28,7 +28,7 @@ const MainVisualSwiper = ({ isMobile, listDatas }: MainVisualProps) => {
 		<div className="mainBox__visual">
 
 
-			<MainVisualTitle isMobile={isMobile} currentIndex={currentIndex} totalSlides={listDatas.length} />
+			<MainVisualTitle isMobile={isMobile} currentIndex={currentIndex} totalSlides={listDatas?.length} />
 
 
 			<Swiper

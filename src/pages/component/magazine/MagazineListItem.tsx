@@ -15,13 +15,24 @@ const MagazineListItem = () => {
 	useEffect(() => {
 		const fetchListData = async () => {
 			try {
-				const res = await fetch('https://inpix.com/front/ajax/tabtabItemList.json');
+				
+				const isDev = process.env.NODE_ENV === 'development';
+
+				const url = isDev
+				? '/api/loadData' // 개발 환경은 프록시로 우회
+				: 'http://taptap.inpix.com/taptap/loadAjaxData.do'; // export는 실제 주소
+
+				const res = await fetch(url, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({}),
+				});
 				const data = await res.json();
 
 				const list = data.ITEMLIST.map((list: any) => ({
 					postNum: list.postNum,
 					title: list.title,
-					imgUrl: `https://www.inpix.com/upload/taptap/${list.attPhgsFileNm}`,
+					imgUrl: `http://taptap.inpix.com/upload/${list.attPhgsFileNm}`,
 					hashTags: [...new Set(list.hashTag.split(',').map((tag: string) => tag.trim()).filter((tag: string) => tag !== ""))],
 					pageNum: list.taptapSeq,
 				}));
@@ -82,6 +93,7 @@ const MagazineListItem = () => {
 						<div className="magazineBox__list__item__con magazineBox__list__item__con--right">
 							<div className="img-box">
 								<img src={item.imgUrl} alt="" />
+
 							</div>
 						</div>
 					</Link>

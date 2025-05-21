@@ -38,7 +38,7 @@ const Archive = ({isMobile} : isMobileProps) => {
 						<ul>
 							<li className="archiveBox__con__list__item">
 								<div className="archiveBox__con__list__item__img">
-									<img src="/images/archive/ikea_logo.png" alt="" />
+									<img src={`/images/archive/ikea_logo.png`} alt="" />
 								</div>
 								<div className="archiveBox__con__list__item__txt">
 									<dl>

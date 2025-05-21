@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState , useRef  } from 'react';
+import { getEnv } from '@/env/getEnv';
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,6 +13,7 @@ type isMobileProps = {
 gsap.registerPlugin(ScrollTrigger);
 
 export default function MagazineView({ isMobile }: isMobileProps) {
+	const { ASSET_PREFIX } = getEnv();
 	
 	const router = useRouter();
 	const { pageNum } = router.query;
@@ -42,7 +44,17 @@ export default function MagazineView({ isMobile }: isMobileProps) {
 
 		const fetchData = async () => {
 			try {
-				const res = await fetch('https://inpix.com/front/ajax/tabtabItemList.json');
+				const isDev = process.env.NODE_ENV === 'development';
+
+				const url = isDev
+				? '/api/loadData' // 개발 환경은 프록시로 우회
+				: 'http://taptap.inpix.com/taptap/loadAjaxData.do'; // export는 실제 주소
+
+				const res = await fetch(url, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({}),
+				});
 				const data = await res.json();
 		
 				const list = data.ITEMLIST.find(
@@ -64,7 +76,7 @@ export default function MagazineView({ isMobile }: isMobileProps) {
 				};
 				
 				const viewList : magazineViewImg  = {
-					imgUrl: `https://www.inpix.com/upload/taptap/${viewImg.attachmentPhgsFileNm}`,
+					imgUrl: `http://taptap.inpix.com/upload/${viewImg.attachmentPhgsFileNm}`,
 					regDtm : new Date(viewImg.regDtm)
 				};
 		
@@ -168,7 +180,7 @@ export default function MagazineView({ isMobile }: isMobileProps) {
 							</div>
 							<div className="magazineBox__view__con__topBtn">
 								<button type="button" onClick={() => window.scrollTo({ top: 0 })}>
-									<span ><img src="/images/common/ico_topBtn_wt.png" alt="" /></span>
+									<span ><img src={`${ASSET_PREFIX}/images/common/ico_topBtn_wt.png`} alt="" /></span>
 								</button>
 							</div>
 						</div>

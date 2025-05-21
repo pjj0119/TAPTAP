@@ -148,13 +148,13 @@ const MainVisual = ({ listDatas }: MainVisualProps) => {
 			viewBtn.classList.remove('noFixed');
 			}
 		};
-	}, [listDatas.length, router.pathname]);
+	}, [listDatas?.length, router.pathname]);
 
 
 
 	return (
 		<div className="mainBox__visual">
-			<MainVisualTitle ref={titleRef} conTotalNum={itemRefs.current.length} conIndex={conIndex}/>
+			<MainVisualTitle ref={titleRef} conTotalNum={itemRefs.current?.length} conIndex={conIndex}/>
 
 			{listDatas?.map((item, i) => (
 				<MainVisualItem

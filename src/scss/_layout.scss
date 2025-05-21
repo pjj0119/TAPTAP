@@ -1,4 +1,5 @@
 @use './import' as *;
+@use './env' as env;
 
 @include brBlock;
 
@@ -34,7 +35,10 @@ body{
 			display: block;
 			width: 85px;
 			height: 35px;
-			background: url(/images/common/logo_block_d.svg) center / 100% no-repeat;
+			 @include bg('images/common/logo_block_d.svg');
+			 background-position: center;
+			 background-size: 100%;
+			 background-repeat: no-repeat;
 		}
 		&.white{
 			a{
@@ -74,7 +78,10 @@ body{
 
 	&.white {
 		.header__logo {
-			background: url(/images/common/logo_white_d.svg) center / 100% no-repeat;
+			 @include bg('images/common/logo_white_d.svg');
+			 background-position: center;
+			 background-size: 100%;
+			 background-repeat: no-repeat;
 		}
 
 		.header__gnb {
@@ -434,7 +441,11 @@ body{
 					font-size: 15px;
 					a{
 						padding-right: 18px;
-						background: url(/images/common/ico_arrw_right.png) right center / 17px no-repeat;
+						
+						@include bg('images/common/ico_arrw_right.png');
+						background-position: right center;
+						background-size: 17px;
+						background-repeat: no-repeat;
 					}
 				}
 			}

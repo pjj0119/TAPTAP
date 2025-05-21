@@ -24,13 +24,25 @@ const Main = ({ isMobile }: isMobileProps) => {
 		
 		const fetchListData = async () => {
 			try {
-				const res = await fetch('https://inpix.com/front/ajax/tabtabItemList.json');
-				const data = await res.json();
+				const isDev = process.env.NODE_ENV === 'development';
 
+				const url = isDev
+				? '/api/loadData' // 개발 환경은 프록시로 우회
+				: 'http://taptap.inpix.com/taptap/loadAjaxData.do'; // export는 실제 주소
+
+				const res = await fetch(url, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({}),
+				});
+
+				const data = await res.json();
+				console.log(res.status);
+				console.log(data)
 				const list = data.ITEMLIST.map((list: any) => ({
 					volume: list.postNum,
 					desc: list.title,
-					imgSrc: `https://www.inpix.com/upload/taptap/${list.attPhgsFileNm}`,
+					imgSrc: `http://taptap.inpix.com/upload/${list.attPhgsFileNm}`,
 					bgColor: list.bgColor,
 					txtColor: list.txtColor,
 					taptapSeq : list.taptapSeq ,

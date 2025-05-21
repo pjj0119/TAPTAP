@@ -1,3 +1,5 @@
+@use './env' as env;
+
 @mixin tablet-landscape {
 	@media (max-width: 1279px) and (min-width: 1025px) {
 		@content;
@@ -102,4 +104,12 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+
+@mixin bg($url) {
+  @if env.$IS_EXPORT {
+    background-image: url("#{env.$ASSET_PREFIX}/#{$url}");
+  } @else {
+    background-image: url("/#{$url}");
+  }
 }

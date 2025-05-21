@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "d": "next dev",
+    "dev:env": "copy src\\scss\\_env.dev.scss src\\scss\\_env.scss && copy src\\env\\_env.dev.tsx src\\env\\_env.tsx",
+    "d": "npm run dev:env && next dev",
     "b": "next build",
+    "e": "cross-env EXPORT_MODE=true next build && next export && node scripts/export-split.js",
     "s": "next start",
-    "lint": "next lint",
-    "e": "next export",
-    "server": "serve out"
+    "server": "serve out",
+    "lint": "next lint"
   },
   "dependencies": {
+    "fs-extra": "^11.3.0",
     "gsap": "^3.13.0",
     "next": "^13.5.11",
     "react": "^18.3.1",
@@ -23,8 +25,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "prettier": "^3.5.3",
     "typescript": "^5"
   }
 }

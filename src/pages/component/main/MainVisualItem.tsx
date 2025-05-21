@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { forwardRef } from 'react';
+import { getEnv } from '@/env/getEnv';
 
 type MainVisualItemType = {
 	imgSrc: string;
@@ -13,7 +14,6 @@ type MainVisualItemType = {
 
 const MainVisualItem = forwardRef<HTMLDivElement, MainVisualItemType>(
 	({ imgSrc, volume, desc, bgColor, txtColor , taptapSeq }, ref) => {
-
 	return (
 		<div
 			className="mainBox__visual__con"

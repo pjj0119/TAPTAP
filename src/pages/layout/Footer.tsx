@@ -1,17 +1,19 @@
 import Link from "next/link"
 import FooterTopbtn from '@/pages/component/layout/FooterTopBtn';
+import { getEnv } from '@/env/getEnv';
 
 
 type isMobileProps = {
 	isMobile: boolean;
 };
 const Footer = ({ isMobile }: isMobileProps) => {
+	const { ASSET_PREFIX } = getEnv();
 	return (
 		<footer id='footer' className="footer">
 			<div className="footerInner">
 				<div className="footerInner__con footerInner__con--left">
 					<div className="footerInner__con__logo">
-						<Link href="https://www.inpix.com/"><img src="/images/common/logo_inpix.png" alt="" /></Link>
+						<Link href="https://www.inpix.com/"><img src={`${ASSET_PREFIX}/images/common/logo_inpix.png`} alt="" /></Link>
 					</div>
 					<div className="footerInner__con__address">
 						<p>
